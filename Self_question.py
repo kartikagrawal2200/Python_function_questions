@@ -152,7 +152,7 @@ inspect_student(**pairs)
 
 
 
-# Question 12
+# Question 11
 def build_report(title, *scores, scale=1, **meta):
     scaled_scores = tuple(s * scale for s in scores)
     sorted_meta = sorted(meta.items())
@@ -171,3 +171,32 @@ for item in meta_line.split(","):
         meta[k.strip()] = v.strip()
 
 print(build_report(title, *scores, scale=scale, **meta))
+
+
+# question 12
+Double_the_value = lambda x: x * 2
+enter = int(input("Enter any Number: "))
+print(Double_the_value(enter))
+print(f"Function name: {Double_the_value.__name__}")
+
+
+# Question 13
+Total = lambda x,m,c: m * x + c
+
+x = int(input("Enter value_1: "))
+m = int(input("enter value_2: "))
+c = int(input("Enter value_3: "))
+print(f"Result: {Total(x,m,c)}")
+
+
+#  question 14
+classify = lambda n: ("Positive Even" if n % 2 == 0 else "Positive Odd") if n > 0 else "Non-Positive"
+
+numbers = list(map(int, input("Enter Numbers: ").split()))
+print(f"Result: {[classify(n) for n in numbers]}")
+
+
+# question 15
+numbers = list(map(int, input("Enter Numbers: ").split()))
+double_the_values = list(map(lambda x: x ** 2, numbers))
+print(f"Result: {double_the_values}")
