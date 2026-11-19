@@ -1,6 +1,14 @@
 # =========  Def dunction (unit-4)  ============
+# question 1
+def display(v):
+    print("Hello World")
+    print("Good Morning")
+    print("have a nice Day")
+    print("The Function ends")
+v = input()
+display(v)
 
-# Q1
+# question 2
 def add(a,b):
     """Returns the sum of two integers"""
     return a + b
@@ -12,7 +20,7 @@ print("Docstring:", add.__doc__)
 print("sum:", add(a,b))
 
 
-# Q2
+# question 3
 def addavg(a,b):
     print(f"sum and avg; ({a+b} {(a+b)/2})")
 def sub(a,b):
@@ -28,7 +36,7 @@ sub(a,b)
 mul(a,b)
 
 
-#Q3
+# question 4
 def log_value(x):
     print(f"logging: {x}")
 
@@ -41,7 +49,7 @@ print(f"log_value returned: {log_value(x)}")
 print(f"check_postive returned: {postive(x)}")
 
 
-# Q4
+# question 5
 def greet(name,age):
     return f"Hello {name}, you are {age} years old"
 
@@ -53,7 +61,7 @@ print(greet(name,age))
 print(greet(name,age))
 
 
-#Q5
+# question 6
 def nameage(*,name,age):
     return f"{name} {age}"
 
@@ -66,7 +74,7 @@ print(nameage(name = name1,age = age1))
 print(nameage(name=name2,age=age2))
 
 
-#Q6
+# question 7
 def evalute_candidate(*,isRich,isYoung,isHandsome):
     if isRich == 1:
         print("The boy is Rich!")
@@ -84,7 +92,7 @@ isHandsome = int(input())
 evalute_candidate(isRich = isRich, isYoung = isYoung, isHandsome = isHandsome)
 
 
-#Q7
+# question 8
 def fun1(name="padma", age=12):
     print(f"{name} is {age} years old")
 
@@ -98,7 +106,7 @@ fun1(name = name_0)
 fun1()
 
 
-#Q8
+# question 9
 def append_item(item, target = None):
     if target is None:
         target = []
@@ -118,7 +126,7 @@ print(list2)
 print(list3)
 
 
-#Q9
+# question 10
 def mysum(*args):
     sum = 0
     for i  in range(len(args)):
@@ -133,7 +141,7 @@ print(mysum(a,b,c))
 print(mysum(a,b))
 
 
-#Q10
+# question 11
 def inspect_student(**kwargs):
     print(f"type: {type(kwargs)}")
     for key in sorted(kwargs):
@@ -152,7 +160,7 @@ inspect_student(**pairs)
 
 
 
-# Question 11
+# Question 12
 def build_report(title, *scores, scale=1, **meta):
     scaled_scores = tuple(s * scale for s in scores)
     sorted_meta = sorted(meta.items())
@@ -173,14 +181,14 @@ for item in meta_line.split(","):
 print(build_report(title, *scores, scale=scale, **meta))
 
 
-# question 12
+# question 13
 Double_the_value = lambda x: x * 2
 enter = int(input("Enter any Number: "))
 print(Double_the_value(enter))
 print(f"Function name: {Double_the_value.__name__}")
 
 
-# Question 13
+# Question 14
 Total = lambda x,m,c: m * x + c
 
 x = int(input("Enter value_1: "))
@@ -189,14 +197,75 @@ c = int(input("Enter value_3: "))
 print(f"Result: {Total(x,m,c)}")
 
 
-#  question 14
+#  question 15
 classify = lambda n: ("Positive Even" if n % 2 == 0 else "Positive Odd") if n > 0 else "Non-Positive"
 
 numbers = list(map(int, input("Enter Numbers: ").split()))
 print(f"Result: {[classify(n) for n in numbers]}")
 
 
-# question 15
+# question 16
 numbers = list(map(int, input("Enter Numbers: ").split()))
 double_the_values = list(map(lambda x: x ** 2, numbers))
 print(f"Result: {double_the_values}")
+
+
+# question 17
+lst1 = map(int, input("Enter Numbers: ").split())
+lst2 = map(int, input("Enter Numbers: ").split())
+result = tuple(map(lambda x,y: x + y,lst1,lst2))
+print(f"Result: {result}")
+
+
+# question 18
+lst = map(int, input("Enter Numbers: ").split())
+even_numbers = list(filter(lambda x: x % 2 == 0, lst))
+print(f"Result: {even_numbers}")
+
+
+# question 19
+lst1 = map(int, input("Enter Numbers: ").split())
+lst2 = map(int, input("Enter Numbers: ").split())
+common_elements = list(filter(lambda x: x in lst1,lst2))
+print(common_elements)
+
+
+# question 20
+from functools import reduce
+
+numbers = list(map(int, input("Enter Numbers: ").split()))
+
+sub_result = reduce(lambda acc, x: acc - x, numbers)
+prod_result = reduce(lambda acc, x: acc * x, numbers)
+
+print(f"subtraction: {sub_result}")
+print(f"product: {prod_result}")
+
+
+# question 21
+from functools import reduce
+
+numbers = list(map(int, input("Enter Numbers: ").split()))
+filtered = list(filter(lambda x: x > 0, numbers))      # reads from nums
+mapped = list(map(lambda x: x ** 2, filtered))      # reads from filtered
+total = reduce(lambda acc, x: acc + x, mapped)   # reads from mapped
+
+print(f"filtered: {filtered}")
+print(f"mapped: {mapped}")
+print(f"total: {total}")
+
+
+# question 22
+details = input("Enter name and marks: ").strip()
+items = []
+
+for pair in details.split(","):
+    if ":" in pair:
+        name, score = pair.split(":", 1)
+        items.append((name.strip(), int(score.strip())))
+
+sorted_items = sorted(items, key=lambda x: (-x[1], x[0]))
+print(sorted_items)
+
+
+
