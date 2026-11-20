@@ -485,11 +485,67 @@ def recurfact(n):
         return 1
     return n * recurfact(n - 1)
 
-number = int(input().strip())
+number = int(input("enter value: ").strip())
 if number < 0:
     print("factorial not exist for negative number")
 else:
     print(f"factorial: {recurfact(number)}")
 
 
+# question 36
+def geometric_sum(n):
+    if n == 1:
+        return 1.0
+    return (1 / (n**2)) + geometric_sum(n - 1)
 
+
+number = int(input("enter value: ").strip())
+if number <= 0:
+    print("n must be greater than 0")
+else:
+    ans = geometric_sum(number)
+    print(f"{ans:.6f}")
+
+
+# question 38
+def fib(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fib(n - 1) + fib(n - 2)
+
+k = int(input("Enter value: ").strip())
+series = [fib(i) for i in range(k)]
+print(series)
+
+
+# question 38
+def sum_digits(n):
+    if n < 10:
+        return n
+    return (n % 10) + sum_digits(n // 10)
+
+number = abs(int(input("enter value: ").strip()))
+print(f"Digit Sum: {sum_digits(number)}")
+
+
+# question 39
+def recur_gcd(a,b):
+    if b == 0:
+        return a
+    return recur_gcd(b, a%b)
+
+a, b = map(int, input("enter values: ").split())
+print(f"GCD: {recur_gcd(a, b)}")
+
+
+# question 40
+def power(base, exp):
+    if exp == 0:
+        return 1
+    return base * power(base, exp - 1)
+    # return base ** exp
+
+base, exp = map(int, input("enter base and expoenent: ").split())
+print(f"Result: {power(base, exp)}")
