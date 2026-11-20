@@ -330,4 +330,166 @@ after_step1()
 after_step2()
 
 
+# question 27
+x = "Global"
+def outer(mode):
+    x = "Enclosing"
+
+    def local_fn():
+        x = "Local"
+        return x
+
+    def enclosing_fn():
+        nonlocal x
+        return x
+
+    def global_fn():
+        global x
+        return x
+
+    if mode == "L":
+        return local_fn()
+    elif mode == "E":
+        return enclosing_fn()
+    elif mode == "G":
+        return global_fn()
+    raise ValueError("Invalid mode: expected L, E, or G")
+
+mode = input().strip()
+print(f"Resolved scope: {outer(mode)}")
+
+
+# question 28
+def level1(a):
+    def level2(b):
+        def level3(c):
+            return f"L1:{a} -> L2:{b} -> L3:{c}"
+
+        return level3
+
+    return level2
+
+s1 = input().strip()
+s2 = input().strip()
+s3 = input().strip()
+
+print(level1(s1)(s2)(s3))
+
+
+# question 29
+def make_multipler(factor):
+    def multiply(number):
+        return number * factor
+    
+    return multiply
+
+factor1 = int(input("enter factor1: "))
+factor2 = int(input("enter factor2: "))
+x = int(input("enter x: "))
+
+m1 = make_multipler(factor1)
+m2 = make_multipler(factor2)
+
+
+# question 30
+def double(x):
+    return 2 * x
+def square(x):
+    return x * x
+
+num = int(input("Enter value: "))
+print(f"double, squaring the value: {square(double(num))}")
+print(f"square, doubling the value: {double(square(num))}")
+
+
+# question 31
+# ==== compsotive function =======
+def compose_chain(*funcs):
+    def apply_all(x):
+        for fn in funcs:
+            x = fn(x)
+        return x
+
+    return apply_all
+# ===== main question probllem ======
+def process_number():
+    def add_two(x):
+        return x + 2
+
+    def square(x):
+        return x**2
+
+    return compose_chain(add_two, square)
+
+n = int(input("enter value: ").strip())
+pipeline = process_number()
+print(f"Result: {pipeline(n)}")
+
+
+
+# question 32
+def square(x):
+    return x ** 2
+def increment(x):
+    return x+1
+def half(x):
+    return x/2
+
+nums = int(input("enter value: "))
+
+v1 = half(increment(square(nums)))
+v2 = increment(square(nums))
+
+print(f"compose(square,increment,half): {v1}")
+print(f"compose(square,increment): {v2}")
+
+
+# question 33
+# ======= uses of decorator ==========
+def tag_output(func):
+    def wrapper(text):
+        return f"[LOG] {func(text)} [/LOG]"
+
+    return wrapper
+# ===main question ===
+def clean_text(s):
+    return s.strip().upper()
+
+decorated = tag_output(clean_text)
+line = input()
+print(decorated(line))
+
+
+# question 34
+def make_avenger():
+    total = 0
+    count = 0
+
+    def add(val):
+        nonlocal total, count
+        total += val
+        count += 1
+
+        return round(total/count, 2)
+    return add
+
+values = [float(x) for x in input("Enter numbers: ").split()]
+avg = make_avenger()
+averages = [avg(v) for v in values]
+print(averages)
+
+
+# question 35
+def recurfact(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * recurfact(n - 1)
+
+number = int(input().strip())
+if number < 0:
+    print("factorial not exist for negative number")
+else:
+    print(f"factorial: {recurfact(number)}")
+
+
 
