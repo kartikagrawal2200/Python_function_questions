@@ -268,4 +268,66 @@ sorted_items = sorted(items, key=lambda x: (-x[1], x[0]))
 print(sorted_items)
 
 
+# question 23
+p1, q1, p2, q2 = map(int, input().split())
+def test1():
+    a = p1
+    b = q1
+    print(f"test1: {a} {b}")
+def test2():
+    a = p2
+    b = q2
+    print(f"test2: {a} {b}")
+
+test1()
+test2()
+
+
+# question 24
+greeting = input()
+
+def show_global():
+  print(greeting)
+def show_local():
+  greeting = "Good Morning"
+  print(greeting)
+
+show_global()
+show_local()
+print(greeting)
+
+
+# question 25
+num = int(input())
+print(f"global a before function call: {num}")
+
+def changelocal():
+    num = 500
+    print(f"Local a value: {num}")
+def changeglobal():
+    num = 200
+    print(f"global a after function call: {num}")
+    
+changelocal()
+changeglobal()
+
+
+# question 26
+a, b, c = map(int, input("enter numbers: ").split())
+sum = 0
+def inital():
+    sum = a
+    print(f"initial: {sum}")
+def after_step1():
+    sum = a + b
+    print(f"after step1: {sum}")
+def after_step2():
+    sum = a + b + c
+    print(f"after step2: {sum}")
+
+inital()
+after_step1()
+after_step2()
+
+
 
