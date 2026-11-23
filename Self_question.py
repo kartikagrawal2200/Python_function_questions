@@ -549,3 +549,135 @@ def power(base, exp):
 
 base, exp = map(int, input("enter base and expoenent: ").split())
 print(f"Result: {power(base, exp)}")
+
+
+# question 41
+def is_palindrome(s):
+    if len(s) <= 1:
+        return True
+    if s[0] != s[-1]:
+        return False
+    return is_palindrome(s[1:-1])
+
+Str = input("Enter Word: ")
+normalized = Str.replace(" ","").lower()
+
+print(f"Result: {is_palindrome(normalized)}")
+
+
+# question 42
+def is_even(n):
+    if n == 0:
+        return True
+    return is_odd(n - 1)
+
+def is_odd(n):
+    if n == 0:
+        return False
+    return is_even(n - 1)
+
+n = int(input().strip())
+print(f"even: {is_even(n)}")
+print(f"odd: {is_odd(n)}")
+
+
+# # question 43
+def recur_minmax(arr, n):
+    if n == 1:
+        return (arr[0], arr[0])
+    prev_min, prev_max = recur_minmax(arr, n-1)
+    current = arr[n-1]
+
+    new_min = current if current < prev_min else prev_min
+    new_max = current if current > prev_max else prev_max
+
+    return (new_min, new_max)
+
+aaray = input("Enter List: ").strip()
+if aaray:
+    arr = [int(x) for x in aaray.split()]
+    result = recur_minmax(arr, len(arr))
+    print(f"{result[0]}, {result[1]}")
+
+
+# question 44
+def binary_search(arr, low, high, target):
+    if low > high:
+        return -1
+
+    mid = (low + high) // 2
+
+    if arr[mid] == target:
+        return mid
+    elif arr[mid] > target:
+        return binary_search(arr, low, mid - 1, target)
+    else:
+        return binary_search(arr, mid + 1, high, target)
+
+arr = list(map(int, input().split()))
+target = int(input().strip())
+
+idx = binary_search(arr, 0, len(arr) - 1, target)
+print(f"index: {idx}")
+
+
+# question 45
+def hanoi(n, source, aux, target, moves):
+    if n == 0:
+        return
+
+    hanoi(n - 1, source, target, aux, moves)
+    moves.append(f"Move disk {n} from {source} to {target}")
+    hanoi(n - 1, aux, source, target, moves)
+
+n = int(input().strip())
+moves = []
+hanoi(n, "A", "B", "C", moves)
+
+for move in moves:
+    print(move)
+print(f"Total moves: {len(moves)}")
+
+
+# question 46
+import math
+num = float(input("Enter floating number: "))
+if abs(num) - abs(math.trunc(num)) >= 0.5 and num >= 0:
+    print(f"result: {math.ceil(num)}")
+else:
+    print(f"result: {math.trunc(num)}")
+
+
+# question 47
+import math
+num = float(input("Enter floating number: "))
+a, b = map(int, input().split())
+print(f"floor: {math.floor(num)}")
+print(f"ceil: {math.ceil(num)}")
+print(f"gcd: {math.gcd(a, b)}")
+print(f"factorial: {math.factorial(a)}")
+
+
+# question 48
+import math
+x, base = map(int, input().split())
+print(f"sqrt: {math.sqrt(x):.4f}")
+print(f"pow: {math.pow(x, base):.4f}")
+print(f"exp: {math.exp(base):.4f}")
+print(f"log: {math.log(x, base):.4f}")
+
+
+# question 49
+import math
+degrees = list(map(int, input().split()))
+
+sins = [round(math.sin(math.radians(d)), 4) for d in degrees]
+coses = [round(math.cos(math.radians(d)), 4) for d in degrees]
+tans = [round(math.tan(math.radians(d)), 4) for d in degrees]
+
+print("degrees", *degrees)
+print("sin", *sins)
+print("cos", *coses)
+print("tan", *tans)
+
+
